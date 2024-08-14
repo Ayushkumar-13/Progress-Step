@@ -1,0 +1,51 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const hrline = document.getElementById('horizontal-line');
+    const circles = document.querySelectorAll('.goal');
+    const previous = document.getElementById('prev');
+    const next = document.getElementById('nxt');
+
+    let currentActive = 1;
+
+    next.addEventListener('click', () => {
+        currentActive++;
+        if (currentActive > circles.length) {
+            currentActive = circles.length;
+        }
+        update();
+    });
+
+    previous.addEventListener('click', () => {
+        currentActive--;
+        if (currentActive < 1) {
+            currentActive = 1;
+        }
+        update();
+    });
+
+    function update() {
+        circles.forEach((circle, index) => {
+            if (index < currentActive) {
+                circle.classList.add('active');
+            } else {
+                circle.classList.remove('active');
+            }
+        });
+
+        const activeCircles = document.querySelectorAll('.active');
+        hrline.style.width = ((activeCircles.length - 1) / (circles.length - 1)) * 100 + '%';
+
+        if (currentActive === 1) {
+            previous.disabled = true;
+        } else {
+            previous.disabled = false;
+        }
+
+        if (currentActive === circles.length) {
+            next.disabled = true;
+        } else {
+            next.disabled = false;
+        }
+    }
+
+    update(); // Initial call to set up the starting state
+});
