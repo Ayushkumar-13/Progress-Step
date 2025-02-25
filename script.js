@@ -46,6 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             next.disabled = false;
         }
     }
-
     update();
+
 });
