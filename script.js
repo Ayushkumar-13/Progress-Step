@@ -47,5 +47,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    update(); // Initial call to set up the starting state
+    update();
 });
